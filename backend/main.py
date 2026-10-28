@@ -9,9 +9,10 @@ app = FastAPI()
 class ProjectIn(BaseModel):
     """Data the client sends when creating or updating a project."""
     title: str = Field(min_length=1, max_length=100)
+    category: str = Field(min_length=1, max_length=50)
     description: str = Field(min_length=1, max_length=500)
-    tech_stack: list[str] = Field(default_factory=list)
-    github_url: str | None = None
+    tags: list[str] = Field(default_factory=list)
+    link: str | None = None
 
 
 class Project(ProjectIn):
@@ -25,21 +26,24 @@ projects: list[Project] = [
     Project(
         id=1,
         title="Personal Portfolio",
-        description="My portfolio website built with React, TypeScript, and Vite.",
-        tech_stack=["React", "TypeScript", "Vite"],
-        github_url="https://github.com/neilm1642/WebDev-BootCamp",
+        category="Web development",
+        description="A home for my projects and interests, built while learning React with the App Dev Club.",
+        tags=["React", "TypeScript", "CSS"],
+        link="https://github.com/neilm1642/WebDev-BootCamp",
     ),
     Project(
         id=2,
-        title="Weather Dashboard",
-        description="A dashboard that shows the current weather and a 5-day forecast.",
-        tech_stack=["JavaScript", "HTML", "CSS"],
+        title="FTC Robotics",
+        category="Robotics",
+        description="Collaborating on competition robots, solving design challenges, and learning through iteration.",
+        tags=["Engineering", "Teamwork", "Robotics"],
     ),
     Project(
         id=3,
-        title="Task Tracker API",
-        description="A simple REST API for creating and completing tasks.",
-        tech_stack=["Python", "FastAPI"],
+        title="Java Coursework",
+        category="Computer science",
+        description="Building my programming foundations through object-oriented design, linked lists, recursion, and generics.",
+        tags=["Java", "Data structures", "OOP"],
     ),
 ]
 
